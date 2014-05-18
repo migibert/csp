@@ -1,4 +1,4 @@
-package com.numergy.blog.csp.problems;
+package com.numergy.blog.csp.problems.compute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,5 +106,24 @@ public class ComputeCSP {
 		computeConstraints.add(ICF.sum(BIN_LOAD_CPU, sumCpuView));
 		
 		return computeConstraints.toArray(new Constraint[2*nbItems+nbBins+2]);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		for(IntVar var : physicalComputeAffectation) {
+			builder.append(var.getName() + " = " + var.getValue() + "\n");
+		}
+		
+		for(IntVar var : physicalComputeRamLoad) {
+			builder.append(var.getName() + " = " + var.getValue() + "\n");
+		}
+		
+		for(IntVar var : physicalComputeCpuLoad) {
+			builder.append(var.getName() + " = " + var.getValue() + "\n");
+		}
+		
+		return builder.toString();
 	}
 }

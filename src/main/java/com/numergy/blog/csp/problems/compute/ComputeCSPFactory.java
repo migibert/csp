@@ -1,4 +1,4 @@
-package com.numergy.blog.csp.problems;
+package com.numergy.blog.csp.problems.compute;
 
 import java.util.List;
 

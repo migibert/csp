@@ -3,10 +3,13 @@ package com.numergy.blog.csp.problems;
 import java.util.List;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import com.numergy.blog.csp.domain.ComputeServer;
 import com.numergy.blog.csp.domain.VirtualMachine;
+import com.numergy.blog.csp.problems.compute.ComputeCSP;
+import com.numergy.blog.csp.problems.compute.ComputeCSPFactory;
 import com.numergy.blog.csp.util.ComputeFactory;
 
 public class ComputeCSPTest {
@@ -20,7 +23,7 @@ public class ComputeCSPTest {
 		final int[] vmsCpu = { 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4 };
 		
 		List<VirtualMachine> vms = ComputeFactory.buildVirtualMachines(vmsRam, vmsCpu);
-		List<ComputeServer> servers = ComputeFactory.buildPhysicalMachine(serversRam, serversCpu);
+		List<ComputeServer> servers = ComputeFactory.buildComputeServer(serversRam, serversCpu);
 		
 		ComputeCSP csp = ComputeCSPFactory.build(vms, servers);
 		boolean feasible = csp.packComputeResources();
@@ -48,7 +51,9 @@ public class ComputeCSPTest {
 		}
 		
 		assertEquals(totalVmCpu, totalServerCpu);
-		assertEquals(totalVmRam, totalServerRam);		
+		assertEquals(totalVmRam, totalServerRam);
+		
+		System.out.println(csp);
 	}
 	
 	@Test
@@ -60,7 +65,7 @@ public class ComputeCSPTest {
 		final int[] vmsCpu = { 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4 };
 		
 		List<VirtualMachine> vms = ComputeFactory.buildVirtualMachines(vmsRam, vmsCpu);
-		List<ComputeServer> servers = ComputeFactory.buildPhysicalMachine(serversRam, serversCpu);
+		List<ComputeServer> servers = ComputeFactory.buildComputeServer(serversRam, serversCpu);
 		
 		ComputeCSP csp = ComputeCSPFactory.build(vms, servers);
 		boolean feasible = csp.packComputeResources();
@@ -76,7 +81,7 @@ public class ComputeCSPTest {
 		final int[] vmsCpu = { 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 4, 4, 6, 6, 8, 8 };
 		
 		List<VirtualMachine> vms = ComputeFactory.buildVirtualMachines(vmsRam, vmsCpu);
-		List<ComputeServer> servers = ComputeFactory.buildPhysicalMachine(serversRam, serversCpu);
+		List<ComputeServer> servers = ComputeFactory.buildComputeServer(serversRam, serversCpu);
 		
 		ComputeCSP csp = ComputeCSPFactory.build(vms, servers);
 		boolean feasible = csp.packComputeResources();

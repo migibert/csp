@@ -20,7 +20,7 @@ public class ComputeFactory {
 		return vms;
 	}
 	
-	public static List<ComputeServer> buildPhysicalMachine(int[] ram, int[] cpu) {
+	public static List<ComputeServer> buildComputeServer(int[] ram, int[] cpu) {
 		if(ram.length != cpu.length) {
 			throw new IllegalArgumentException("ram array and cpu array should have the same length");
 		}
